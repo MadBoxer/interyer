@@ -1,0 +1,39 @@
+<h1>Listing administration_products</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Meta d</th>
+    <th>Meta k</th>
+    <th>Priceldecimal</th>
+    <th>Garranty</th>
+    <th>Duration</th>
+    <th>Delivery</th>
+    <th>Notice</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_products.each do |administration_product| %>
+  <tr>
+    <td><%= administration_product.name %></td>
+    <td><%= administration_product.meta_d %></td>
+    <td><%= administration_product.meta_k %></td>
+    <td><%= administration_product.priceLdecimal %></td>
+    <td><%= administration_product.garranty %></td>
+    <td><%= administration_product.duration %></td>
+    <td><%= administration_product.delivery %></td>
+    <td><%= administration_product.notice %></td>
+    <td><%= administration_product.description %></td>
+    <td><%= link_to 'Show', administration_product %></td>
+    <td><%= link_to 'Edit', edit_administration_product_path(administration_product) %></td>
+    <td><%= link_to 'Destroy', administration_product, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Product', new_administration_product_path %>

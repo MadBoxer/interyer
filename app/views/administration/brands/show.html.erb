@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @administration_brand.name %>
+</p>
+
+<p>
+  <b>Meta d:</b>
+  <%= @administration_brand.meta_d %>
+</p>
+
+<p>
+  <b>Meta k:</b>
+  <%= @administration_brand.meta_k %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @administration_brand.active %>
+</p>
+
+<p>
+  <b>Trash:</b>
+  <%= @administration_brand.trash %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @administration_brand.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_administration_brand_path(@administration_brand) %> |
+<%= link_to 'Back', administration_brands_path %>

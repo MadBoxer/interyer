@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @administration_category.name %>
+</p>
+
+<p>
+  <b>Meta d:</b>
+  <%= @administration_category.meta_d %>
+</p>
+
+<p>
+  <b>Meta k:</b>
+  <%= @administration_category.meta_k %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @administration_category.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_administration_category_path(@administration_category) %> |
+<%= link_to 'Back', administration_categories_path %>

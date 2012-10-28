@@ -1,0 +1,23 @@
+<h1>Listing administration_categories</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_categories.each do |administration_category| %>
+  <tr>
+    <td><%= administration_category.name %></td>
+    <td><%= link_to 'Show', administration_category %></td>
+    <td><%= link_to 'Edit', edit_administration_category_path(administration_category) %></td>
+    <td><%= link_to 'Destroy', administration_category, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Category', new_administration_category_path %>
