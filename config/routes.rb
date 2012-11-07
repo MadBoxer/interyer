@@ -8,6 +8,7 @@ Interyer::Application.routes.draw do
   get '/administration', :controller => 'administration/categories', :action => 'index'
   get 'category/:id', :controller => 'public/category', :action => 'show', :id => :id
   get '/:cat_ref', :controller => 'public/category', :action => 'show', :cat_ref => :cat_ref
+  get '/:cat_ref/:id', :controller => 'public/product', :action => 'show', :cat_ref => :cat_ref, :id => :id
   #get '/administration/categories/show', :controller => 'administration/categories', :action => 'show'
   # The priority is based upon order of creation:
   # first created -> highest priority.

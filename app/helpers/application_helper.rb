@@ -6,4 +6,10 @@ module ApplicationHelper
       end
     end
   end
+  
+  class ActiveRecord::Base
+    def available(cond)
+      self.where(:active => 1, :trash => 0).where(cond)
+    end
+  end
 end

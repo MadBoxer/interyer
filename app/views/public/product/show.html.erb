@@ -1,0 +1,18 @@
+<%
+	def print_field(field, label)
+		render :template => 'public/product/field', :locals => {:field => field, :label => label}
+	end
+%>
+<% if @product %>
+<table>
+	<%= print_field @product.name, "Название"%>
+	<%= print_field @product.price, "Цена"%>
+	<%= print_field @product.garranty, "Гарантия"%>
+	<%= print_field @product.duration, "Исполнение"%>
+	<%= print_field @product.delivery, "Доставка"%>
+	<%= print_field @product.notice, "Примечания"%>
+</table>
+<%= strip_tags(@product.description) %>
+<% end %>
+
+

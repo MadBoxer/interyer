@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 5) do
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "single_name",                    :null => false
+    t.string   "alias",       :default => "",    :null => false
     t.integer  "parent_id",   :default => 0,     :null => false
     t.string   "meta_d"
     t.string   "meta_k"
@@ -35,7 +36,6 @@ ActiveRecord::Schema.define(:version => 5) do
     t.text     "description"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.string   "alias",                          :null => false
   end
 
   create_table "product_brands", :force => true do |t|
@@ -45,17 +45,11 @@ ActiveRecord::Schema.define(:version => 5) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "product_categories", :force => true do |t|
-    t.integer  "product_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "products", :force => true do |t|
     t.string   "name"
-    t.string   "meta_d",                                     :default => "",    :null => false
-    t.string   "meta_k",                                     :default => "",    :null => false
+    t.string   "alias",                                                         :null => false
+    t.string   "meta_d",                                                        :null => false
+    t.string   "meta_k",                                                        :null => false
     t.decimal  "price",       :precision => 10, :scale => 2
     t.string   "garranty"
     t.string   "duration"

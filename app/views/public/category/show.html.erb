@@ -6,7 +6,7 @@
 		Для данной категории товаров нет
 	<% end %>
 	<% @products.each do |p| %>
-		<li><%= p.name %></li>
+		<li><%= link_to p.name, :controller => :product, :action => :show, :cat_ref => Category.where(:alias => params[:cat_ref]).first.alias, :id => (!p.alias.empty? ? p.alias : p.id.to_s) %></li>
 	<% end %>
 </ul>
 
