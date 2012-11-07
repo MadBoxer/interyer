@@ -1,23 +1,39 @@
-<h1>Listing administration_categories</h1>
+<%	def getTree(cat)
+		if cat.categories.length>0 %>
+			<ul>
+			<% cat.categories.each do |a_c| %>
+				<li>
+					<% styleStr = (a_c.id.to_i == params[:id].to_i ? 'color:blue' : '')%>
+					<%= link_to a_c.name, [:administration, a_c], {:style => styleStr}%>
+					<%= link_to image_tag('edit.png', :size => '20x20'), edit_administration_category_path(a_c) %>
+    				<%= link_to image_tag('del.png'), administration_category_path(a_c), confirm: 'Are you sure?', method: :delete %>
+					<% getTree(a_c) %>
+				</li>
+			<% end	%>
+			</ul>
+			<%
+		end
+	end
+%>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @administration_categories.each do |administration_category| %>
-  <tr>
-    <td><%= administration_category.name %></td>
-    <td><%= link_to 'Show', administration_category %></td>
-    <td><%= link_to 'Edit', edit_administration_category_path(administration_category) %></td>
-    <td><%= link_to 'Destroy', administration_category, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Category', new_administration_category_path %>
+<h1>Категории</h1>
+<div id="common_category_view">
+	<div id="leftPart">
+		<ul id="mainCategoryTree">
+		<% @administration_categories.each do |a_c| %>
+		    <li>
+		    	<% styleStr = (a_c.id.to_i == params[:id].to_i ? 'color:blue' : '')%>
+		    	<%= link_to a_c.name, [:administration, a_c], {:style => styleStr}%>
+		    	<%= link_to image_tag('edit.png', :size => '20x20'), edit_administration_category_path(a_c) %>
+		    	<%= link_to image_tag('del.png'), administration_category_path(a_c), confirm: 'Are you sure?', method: :delete %>
+		    	<% getTree(a_c) %>
+		    </li>
+		<% end %>
+		</ul>
+		<div id="new_category_link"><%= link_to 'Новая категория', new_administration_category_path %></div>
+	</div>
+	<div id="rightPart">
+		<% locals = @current_category ? {:current_category => @current_category} : locals = {:categories => @administration_categories}	%>
+		<%= render :partial => 'administration/categories/category_view', :locals => locals%>
+	</div>
+</div>

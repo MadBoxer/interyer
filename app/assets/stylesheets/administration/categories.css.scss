@@ -1,3 +1,51 @@
 // Place all the styles related to the administration/categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#common_category_view
+{
+  width:1000px;
+  height:800px;
+  border:1px dotted gray;
+}
+#leftPart
+{
+  width:29%;
+  height:100%;
+  float:left;
+  border-right:1px dotted gray;
+}
+ul#mainCategoryTree, ul#mainCategoryTree ul
+{
+  padding:0px;
+}
+ul#mainCategoryTree li
+{
+  list-style:none;
+  margin-left:15px;
+}
+#new_category_link
+{
+  margin:10px;
+  margin-top:30px;
+}
+#rightPart
+{
+  float:left;
+  width:70%;
+  height:100%;
+}
+#rightPartContent
+{
+  margin:20px;
+}
+ul#right_part_category_view li
+{
+  list-style:none;
+}
+
+
+ul#right_part_products_view li
+{
+  list-style:none;
+}

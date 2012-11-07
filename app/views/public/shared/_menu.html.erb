@@ -1,0 +1,26 @@
+<div id="main_menu">
+	<ul>
+	<% getCategoryMenu do |c|%>
+		<li><%= c.name %>
+			<% if c.categories.length > 0 %>
+				<ul>
+			<% end %>
+	
+			<% c.categories.each do |sub_c|%>
+				<li>
+					<% if sub_c.alias != '' %>
+						<%= link_to sub_c.name, '/'+sub_c.alias %>
+					<% else %>
+						<%# link_to sub_c.name, :controller => 'public/category', :action => :show, :id => sub_c.id %>
+						<%= link_to sub_c.name, '/category/'+sub_c.id.to_s %>
+					<% end %>
+				</li>
+			<% end %>
+			
+			<% if c.categories.length > 0 %>
+				</ul>
+			<% end %>
+		</li>
+	<% end %>
+	</ul>
+</div>

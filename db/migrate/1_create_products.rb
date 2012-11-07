@@ -4,7 +4,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :name
       t.string :meta_d
       t.string :meta_k
-      t.string :priceLdecimal
+      t.decimal :price
       t.string :garranty
       t.string :duration
       t.string :delivery

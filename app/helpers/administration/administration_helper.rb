@@ -1,0 +1,3 @@
+module Administration::AdministrationHelper
+   
+end

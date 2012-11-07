@@ -1,25 +1,39 @@
-<p id="notice"><%= notice %></p>
+<%	def getTree(cat)
+		if cat.categories.length>0 %>
+			<ul>
+			<% cat.categories.each do |a_c| %>
+				<li>
+					<% styleStr = (a_c.id.to_i == params[:id].to_i ? 'color:blue' : '')%>
+					<%= link_to a_c.name, [:administration, a_c], {:style => styleStr}%>
+					<%= link_to image_tag('edit.png', :size => '20x20'), edit_administration_category_path(a_c) %>
+    				<%= link_to image_tag('del.png'), administration_category_path(a_c), confirm: 'Are you sure?', method: :delete %>
+					<% getTree(a_c) %>
+				</li>
+			<% end	%>
+			</ul>
+			<%
+		end
+	end
+%>
 
-<p>
-  <b>Name:</b>
-  <%= @administration_category.name %>
-</p>
-
-<p>
-  <b>Meta d:</b>
-  <%= @administration_category.meta_d %>
-</p>
-
-<p>
-  <b>Meta k:</b>
-  <%= @administration_category.meta_k %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @administration_category.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_administration_category_path(@administration_category) %> |
-<%= link_to 'Back', administration_categories_path %>
+<h1>Категории</h1>
+<div id="common_category_view">
+	<div id="leftPart">
+		<ul id="mainCategoryTree">
+		<% @administration_categories.each do |a_c| %>
+		    <li>
+		    	<% styleStr = (a_c.id.to_i == params[:id].to_i ? 'color:blue' : '')%>
+		    	<%= link_to a_c.name, [:administration, a_c], {:style => styleStr}%>
+		    	<%= link_to image_tag('edit.png', :size => '20x20'), edit_administration_category_path(a_c) %>
+		    	<%= link_to image_tag('del.png'), administration_category_path(a_c), confirm: 'Are you sure?', method: :delete %>
+		    	<% getTree(a_c) %>
+		    </li>
+		<% end %>
+		</ul>
+		<div id="new_category_link"><%= link_to 'Новая категория', new_administration_category_path %></div>
+	</div>
+	<div id="rightPart">
+		<% locals = @current_category ? {:current_category => @current_category} : locals = {:categories => @administration_categories}	%>
+		<%= render :partial => 'administration/categories/category_view', :locals => locals%>
+	</div>
+</div>

@@ -4,8 +4,10 @@ Interyer::Application.routes.draw do
   namespace :administration do resources :categories end
     
   namespace :administration do resources :products end
-
+    
   get '/administration', :controller => 'administration/categories', :action => 'index'
+  get 'category/:id', :controller => 'public/category', :action => 'show', :id => :id
+  get '/:cat_ref', :controller => 'public/category', :action => 'show', :cat_ref => :cat_ref
   #get '/administration/categories/show', :controller => 'administration/categories', :action => 'show'
   # The priority is based upon order of creation:
   # first created -> highest priority.

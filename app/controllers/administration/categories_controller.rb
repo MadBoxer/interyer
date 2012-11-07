@@ -1,24 +1,19 @@
 class Administration::CategoriesController < ApplicationController
   # GET /administration/categories
   # GET /administration/categories.json
-  def index
-    @administration_categories = Category.all
+  layout 'administration/category'
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @administration_categories }
-    end
+  
+  def index
+    @administration_categories = Category.where('parent_id=0').where('active=1')
+    render :action => :show
   end
 
   # GET /administration/categories/1
   # GET /administration/categories/1.json
   def show
-    @administration_category = Category.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @administration_category }
-    end
+    @administration_categories = Category.where('parent_id=0').where('active=1')
+    @current_category = Category.find(params[:id])
   end
 
   # GET /administration/categories/new
@@ -40,11 +35,11 @@ class Administration::CategoriesController < ApplicationController
   # POST /administration/categories
   # POST /administration/categories.json
   def create
-    @administration_category = Category.new(params[:administration_category])
+    @administration_category = Category.new(params[:category])
 
     respond_to do |format|
       if @administration_category.save
-        format.html { redirect_to @administration_category, notice: 'Category was successfully created.' }
+        format.html { redirect_to [:administration, @administration_category], notice: 'Category was successfully created.' }
         format.json { render json: @administration_category, status: :created, location: @administration_category }
       else
         format.html { render action: "new" }
@@ -59,8 +54,8 @@ class Administration::CategoriesController < ApplicationController
     @administration_category = Category.find(params[:id])
 
     respond_to do |format|
-      if @administration_category.update_attributes(params[:administration_category])
-        format.html { redirect_to @administration_category, notice: 'Category was successfully updated.' }
+      if @administration_category.update_attributes(params[:category])
+        format.html { redirect_to [:administration, @administration_category], notice: 'Category was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,4 +75,27 @@ class Administration::CategoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def view_cat
+    
+  end
+  private #------------------------
+  
+  def getCategoryTree(cat)
+    
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

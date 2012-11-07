@@ -1,53 +1,79 @@
-<%= form_for @administration_product do |f| %>
-  <% if @administration_product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@administration_product.errors.count, "error") %> prohibited this administration_product from being saved:</h2>
+<%= tinymce_assets %>
+<%= tinymce %> 
+<%= form_for [:administration, @administration_product] do |f| %>
+  <%= render :partial => 'shared/errors', :locals => {:object => @administration_product }%>
+	
+<% if params[:cat_id] %>
+	<input type="hidden" name="current_category_redirect" value="<%=params[:cat_id]%>"/>
+<% end %>
 
-      <ul>
-      <% @administration_product.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :meta_d %><br />
-    <%= f.text_field :meta_d %>
-  </div>
-  <div class="field">
-    <%= f.label :meta_k %><br />
-    <%= f.text_field :meta_k %>
-  </div>
-  <div class="field">
-    <%= f.label :priceLdecimal %><br />
-    <%= f.text_field :priceLdecimal %>
-  </div>
-  <div class="field">
-    <%= f.label :garranty %><br />
-    <%= f.text_field :garranty %>
-  </div>
-  <div class="field">
-    <%= f.label :duration %><br />
-    <%= f.text_field :duration %>
-  </div>
-  <div class="field">
-    <%= f.label :delivery %><br />
-    <%= f.text_field :delivery %>
-  </div>
-  <div class="field">
-    <%= f.label :notice %><br />
-    <%= f.text_field :notice %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<table>
+  <tr>
+    <td><%= f.label :name %></td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+  	<td>Категории</td>
+  	<td>
+  		<table border="1" id="product_categories_table">
+  			<% i = 1 %>
+  			<%
+  				add = @categories.length % 5 > 0 ? 1 : 0;
+  				n = Rational(@categories.length, 5).to_i.to_s.split('.')[0].to_i
+  			%>
+  			<% (n+add).times do |r| %>
+  				<tr>
+	  			<% for j in 1...@categories.length
+	  				if i % 5 == 0
+	  					break 
+	  				end
+	  				if j >= i && @categories[j][0].categories.length == 0 %>
+	  					<td>
+	  						<%= check_box_tag('categories['+@categories[j][0].id.to_s+']', @categories[j][0].id.to_s, @categories[j][1])%>
+	  						<%= @categories[j][0].name %></td>
+	  				<% end
+	  			   end %>
+	  			   <% i += 5 %>
+	  			</tr>
+	  		<%end %>
+  		</table>
+  	</td>
+  </tr>
+  <tr>
+    <td><%= f.label :meta_d %></td>
+    <td><%= f.text_field :meta_d %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :meta_k %></td>
+    <td><%= f.text_field :meta_k %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :price %></td>
+    <td><%= f.text_field :price %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :garranty %></td>
+    <td><%= f.text_field :garranty %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :duration %></td>
+    <td><%= f.text_field :duration %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :delivery %></td>
+    <td><%= f.text_field :delivery %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :notice %></td>
+    <td><%= f.text_field :notice %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :description %></td>
+    <td><%= f.text_area :description, :class=>"tinymce", :rows => 20, :cols => 70 %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= f.submit "Отправить" %></td>
+  </tr>
+</table>
 <% end %>

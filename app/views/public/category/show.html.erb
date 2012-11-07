@@ -1,0 +1,13 @@
+<%= params %>
+
+<hr>
+<ul>
+	<% if @products.empty? %>
+		Для данной категории товаров нет
+	<% end %>
+	<% @products.each do |p| %>
+		<li><%= p.name %></li>
+	<% end %>
+</ul>
+
+<%= paginate @products %>
