@@ -1,1 +1,7 @@
-
+<ul>
+	<% @products.each do |p| %>
+		<li>
+			<%= link_to p.name, :controller => 'public/product', :action => 'show', :prod_ref => p.alias %>
+		</li>
+	<% end %>
+</ul>

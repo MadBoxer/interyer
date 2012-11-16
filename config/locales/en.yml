@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+
+i18n:
+  transliterate:
+    rule:
+     "у" : "_"

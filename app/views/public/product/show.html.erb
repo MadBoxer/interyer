@@ -12,7 +12,14 @@
 	<%= print_field @product.delivery, "Доставка"%>
 	<%= print_field @product.notice, "Примечания"%>
 </table>
+<%= form_tag({:controller => 'public/cart', :action => :add_to_cart, :id => @product.id}, :method => :get, :remote => true) do%>
+<%= submit_tag %>
+<% end %>
 <%= strip_tags(@product.description) %>
 <% end %>
+<hr>
+<div id="cart_part">
+	<%= render 'simple_cart' %>
+</div>
 
 

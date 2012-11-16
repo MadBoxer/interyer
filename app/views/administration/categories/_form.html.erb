@@ -28,6 +28,10 @@
     <%= select_tag('category[parent_id]', options_for_select([['', '0']] + Category.where('active=1').where('trash=0').where('parent_id=0').where((@administration_category.id ? 'id!='+@administration_category.id.to_s : '')).collect{|c| [c.name, c.id]}, @administration_category.parent_id)) %>
   </div>
   <div class="field">
+    <%= f.label 'Сортировка' %><br />
+    <%= f.text_field :sort %>
+  </div>
+  <div class="field">
     <%= f.label 'Описание' %><br />
     <%= f.text_area :description, :class=>"tinymce", :rows => 20, :cols => 70 %>
   </div>

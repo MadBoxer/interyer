@@ -7,6 +7,7 @@ class CreateCategories < ActiveRecord::Migration
       t.string :meta_k
       t.boolean :active
       t.boolean :trash
+      t.sort :integer
       t.text :description
 
       t.timestamps

@@ -15,28 +15,15 @@
   <tr>
   	<td>Категории</td>
   	<td>
-  		<table border="1" id="product_categories_table">
-  			<% i = 1 %>
-  			<%
-  				add = @categories.length % 5 > 0 ? 1 : 0;
-  				n = Rational(@categories.length, 5).to_i.to_s.split('.')[0].to_i
-  			%>
-  			<% (n+add).times do |r| %>
-  				<tr>
-	  			<% for j in 1...@categories.length
-	  				if i % 5 == 0
-	  					break 
-	  				end
-	  				if j >= i && @categories[j][0].categories.length == 0 %>
-	  					<td>
-	  						<%= check_box_tag('categories['+@categories[j][0].id.to_s+']', @categories[j][0].id.to_s, @categories[j][1])%>
-	  						<%= @categories[j][0].name %></td>
-	  				<% end
-	  			   end %>
-	  			   <% i += 5 %>
-	  			</tr>
-	  		<%end %>
-  		</table>
+		<ul>
+			<%= hidden_field_tag 'product[category_ids][]', nil %>
+			<% @categories.each do |c|%>
+				<li>
+					<%= check_box_tag('product[category_ids][]', c.id, @administration_product.category_ids.include?(c.id))%>
+					<%= c.name %>
+				</li>
+			<% end %>
+		</ul>
   	</td>
   </tr>
   <tr>
@@ -66,6 +53,14 @@
   <tr>
     <td><%= f.label :notice %></td>
     <td><%= f.text_field :notice %></td>
+  </tr>
+  <tr>
+    <td><%= f.label 'Ссылка' %></td>
+    <td><%= f.text_field :alias %></td>
+  </tr>
+  <tr>
+    <td><%= f.label 'Главная страница' %></td>
+    <td><%= check_box('product', 'main_page', {:checked => @administration_product.main_page})%></td>
   </tr>
   <tr>
     <td><%= f.label :description %></td>

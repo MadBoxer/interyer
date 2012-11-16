@@ -23,6 +23,11 @@ gem 'russian', '~> 0.6.0'
 gem 'jquery-rails'
 gem 'tinymce-rails'
 gem 'kaminari', "~> 0.14.1"
+gem 'rails-i18n'
+gem 'russian', '~> 0.6.0'
+
+gem 'carrierwave'
+gem 'rmagick'
 #gem 'will_paginate', '> 3.0'
 
 # To use ActiveModel has_secure_password

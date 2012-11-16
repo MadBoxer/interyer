@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 5) do
+ActiveRecord::Schema.define(:version => 7) do
 
   create_table "brands", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(:version => 5) do
     t.text     "description"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "cart_items", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "order_id",   :default => 0, :null => false
+    t.integer  "quantity"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "carts", :force => true do |t|
+    t.string   "session_id", :limit => 32, :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -36,6 +50,7 @@ ActiveRecord::Schema.define(:version => 5) do
     t.text     "description"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.integer  "sort",                           :null => false
   end
 
   create_table "product_brands", :force => true do |t|
@@ -60,6 +75,7 @@ ActiveRecord::Schema.define(:version => 5) do
     t.boolean  "trash",                                      :default => false, :null => false
     t.datetime "created_at",                                                    :null => false
     t.datetime "updated_at",                                                    :null => false
+    t.boolean  "main_page",                                  :default => false, :null => false
   end
 
   create_table "products_categories", :force => true do |t|

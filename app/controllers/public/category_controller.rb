@@ -1,8 +1,11 @@
 class Public::CategoryController < ApplicationController
   
+  layout 'public/main'
+  
   before_filter :get_by_alias, :only => ['show']
   def index
-    @category = Category.where('alias=\''+params['cat_ref']+'\'')
+    @category = Category.order(:sort)
+    @products = Product.where(:main_page => true)
   end
   
   def show
