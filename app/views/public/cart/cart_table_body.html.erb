@@ -1,0 +1,11 @@
+<% i = 1 %>
+<% @cart.items.each do |item| %>
+	<tr>
+		<td><%=i%></td>
+		<td><%= item.product.name %></td>
+		<td><%= item.quantity %></td>
+		<td><%= (item.quantity*item.product.price).to_i.to_s %> руб</td>
+		<td><%= link_to 'Удалить', {:controller => 'cart', :action => 'delete_from_cart', :product_id => item.product.id}, :remote => true %></td>
+	</tr>
+	<% i += 1 %>
+<% end %>

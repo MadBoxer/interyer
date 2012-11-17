@@ -1,23 +1,32 @@
-<table border=1 cellpadding=2>
-	<tr>
-		<th>№</th>
-		<th>Название</th>
-		<th>Количество</th>
-		<th>Сумма</th>
-	</tr>
-	<% i = 1 %>
-<% @cart.items.each do |item| %>
-	<tr>
-		<td><%=i%></td>
-		<td><%= item.product.name %></td>
-		<td><%= item.quantity %></td>
-		<td><%= (item.quantity*item.product.price).to_i %> руб</td>
-	</tr>
-	<% i += 1 %>
-<% end %>
-
-	<tr>
-		<th colspan="3"></th>
-		<th>Итого: <%= @cart.total_price.to_i%> руб</th>
-	</tr>
+<script>
+	$(function(){
+		$('button[name=del_cart_item]').click(function(){
+			var product_id = $(this).data('product_id');
+			$.post('/cart/delete_from_cart/'+product_id, function(){
+				document.location.reload;
+			});
+		});
+	});
+</script>
+<% if @cart.items.length > 0 %>
+<table border=1 cellpadding=2 id="cart_table">
+	<thead>
+		<tr>
+			<th>№</th>
+			<th>Название</th>
+			<th>Количество</th>
+			<th>Сумма</th>
+			<th>Удалить</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :template => 'public/cart/cart_table_body' %>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="3"></th>
+			<th>Итого: <%= @cart.total_price.to_i%> руб</th>
+		</tr>
+	</tfoot>
 </table>
+<% end %>

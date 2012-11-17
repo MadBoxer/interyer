@@ -1,0 +1,64 @@
+#main_banner
+{
+  width:100%;
+  position:absolute;
+  height:150px;
+  top:0;
+  left:0;
+}
+#main
+{
+  margin:0 auto;
+  width:1000px;
+}
+#menu
+{
+  height:100px;
+  width:100%;
+}
+#banner
+{
+  height:150px;
+  width:100%;
+  border:1px solid gray;
+}
+#content
+{
+  width:100%;
+  min-height:500px;
+}
+#cat_menu
+{
+  width:20%;
+  min-height:300px;
+  float:left;
+}
+#main_content
+{
+  min-height:450px;
+  width:80%;
+  float:left;
+}
+#footer
+{
+  height:150px;
+  width:100%;
+  border:1px solid gray;
+}
+#products_list
+{
+  padding:0px;
+}
+#products_list > li
+{
+  display:block;
+  width:240px;
+  height:180px;
+  border:1px solid black;
+  float:left;
+  margin:10px;
+}
+#cat_menu > ul li ul
+{
+  padding:0px;
+}

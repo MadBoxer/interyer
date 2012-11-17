@@ -6,5 +6,4 @@ class Product < ActiveRecord::Base
   
   scope :avail, ->(cond){Product.where(:active => true, :trash => false).where(cond)}
   
-  mount_uploader :image, PictureUploader
 end

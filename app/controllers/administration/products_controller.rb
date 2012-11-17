@@ -64,6 +64,10 @@ class Administration::ProductsController < ApplicationController
   # PUT /administration/products/1.json
   def update
     @administration_product = Product.find(params[:id])
+=begin
+    pi = ProductImage.new_based_on(params['product_image'])
+   
+    @administration_product.product_images.push pi
     respond_to do |format|
       if @administration_product.update_attributes(params[:product])
         format.html { redirect_to :back, notice: 'Product was successfully updated.' }
@@ -73,6 +77,7 @@ class Administration::ProductsController < ApplicationController
         format.json { render json: @administration_product.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # DELETE /administration/products/1

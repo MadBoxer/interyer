@@ -16,6 +16,15 @@
     <%= f.text_field :alias %>
   </div>
   <div class="field">
+    <%= f.label 'Изображение' %><br/>
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <% if @administration_category.image_url(:mini).present? %>
+		<%= image_tag @administration_category.image, :size => '100x100' %>
+	<% end %>
+  </div>
+  <div class="field">
     <%= f.label 'Метаописание' %><br />
     <%= f.text_field :meta_d %>
   </div>

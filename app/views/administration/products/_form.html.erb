@@ -1,6 +1,6 @@
 <%= tinymce_assets %>
 <%= tinymce %> 
-<%= form_for [:administration, @administration_product] do |f| %>
+<%= form_for [:administration, @administration_product], :html => {:multipart => true} do |f| %>
   <%= render :partial => 'shared/errors', :locals => {:object => @administration_product }%>
 	
 <% if params[:cat_id] %>
@@ -11,6 +11,16 @@
   <tr>
     <td><%= f.label :name %></td>
     <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td><%= f.label 'Изображение' %></td>
+    <td><%= file_field_tag 'product_image' %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+    	<%= image_tag @administration_product.avatar, :size=>'100x100'%>
+    </td>
   </tr>
   <tr>
   	<td>Категории</td>

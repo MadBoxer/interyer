@@ -9,6 +9,7 @@ class CreateCategories < ActiveRecord::Migration
       t.boolean :trash
       t.sort :integer
       t.text :description
+      t.string :image
 
       t.timestamps
     end

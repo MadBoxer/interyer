@@ -13,6 +13,7 @@ Interyer::Application.routes.draw do
   get '/:cat_ref', :controller => 'public/category', :action => 'show', :cat_ref => :cat_ref
   get '/:cat_ref/:prod_ref', :controller => 'public/product', :action => 'show', :cat_ref => :cat_ref, :prod_ref => :prod_ref
   get '/', :controller => 'public/category', :action => 'index'
+  get 'cart/delete_from_cart/:product_id', :controller => 'public/cart', :action => 'delete_from_cart', :product_id => :product_id
   #get 'page_not_found', 'public/shared/_not_found.html'
   #get '/administration/categories/show', :controller => 'administration/categories', :action => 'show'
   # The priority is based upon order of creation:
