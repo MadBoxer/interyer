@@ -1,7 +1,15 @@
 // Place all the styles related to the administration/products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-table#product_categories_table td
-{
+table#product_categories_table td{
   padding-left: 40px;
+}
+.admin_prod_image_gallery_item{
+  float:left;
+  margin:5px
+}
+.admin_prod_image_gallery_item_main{
+  width:100%;
+  text-align:center;
+  height:20px;
 }

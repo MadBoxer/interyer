@@ -3,7 +3,12 @@ class Administration::CategoriesController < ApplicationController
   # GET /administration/categories.json
   layout 'administration/category'
 
-  before_filter :set_alias, :only => [:create, :update]
+  before_filter :only => [:create, :update] do
+    if params[:category][:alias].empty?
+      params[:category][:alias] = Russian::transliterate(params[:category][:name]).downcase.parameterize
+    end
+  end
+  
   def index
     @administration_categories = Category.where('parent_id=0').where('active=1')
     render :action => :show
@@ -85,11 +90,6 @@ class Administration::CategoriesController < ApplicationController
     
   end
   
-  def set_alias
-    if params[:category][:alias].empty?
-      params[:category][:alias] = Russian::transliterate(params[:category][:name]).downcase.parameterize
-    end
-  end
 end
 
 

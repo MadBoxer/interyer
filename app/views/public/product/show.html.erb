@@ -5,6 +5,9 @@
 %>
 <% if @product %>
 <table>
+	<% unless @product.product_images.empty? %>
+		<%= image_tag(@product.product_images.main.first.name_url(:mini)) %>
+	<% end %>
 	<%= print_field @product.name, "Название"%>
 	<%= print_field @product.price, "Цена"%>
 	<%= print_field @product.garranty, "Гарантия"%>
@@ -14,6 +17,10 @@
 </table>
 <%= link_to 'Добавить', {:controller => 'public/cart', :action => :add_to_cart, :id => @product.id}, :remote => true %>
 <%= strip_tags(@product.description) %>
+<% end %>
+<hr>
+<% @product.product_images.each do |image| %>
+	<%= image_tag image.name_url(:mini), :size => '100x100' %>
 <% end %>
 <hr>
 <div id="cart_part">

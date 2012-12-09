@@ -1,6 +1,6 @@
 class Public::ProductController < ApplicationController
   layout 'public/main'
-  before_filter :find_or_create
+  
   def show
     if params[:cat_ref]
       if params[:prod_ref]
@@ -27,9 +27,5 @@ class Public::ProductController < ApplicationController
   def simple_cart
     
   end
-  private #-------------
-  def find_or_create
-    session[:cart] ||= Cart.new
-    @cart = session[:cart]
-  end
+  
 end

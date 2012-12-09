@@ -11,3 +11,9 @@
  *= require_self
  *= require_tree .
 */
+#basket_header{
+	float:right;
+}
+.clear{
+	clear:both;
+}

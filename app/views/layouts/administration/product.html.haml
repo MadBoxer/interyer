@@ -1,0 +1,12 @@
+!!! 5
+%html
+	%head
+		%title= @administration_category ? @administration_category.name : 'Администрирование'
+		= stylesheet_link_tag "application", :media => "all"
+		= stylesheet_link_tag "product.adminstyles", :media => "all"
+		= javascript_include_tag "application"
+		= csrf_meta_tags
+	%body
+		%div#main_menu
+			= render :template => 'administration/administration/main_menu'
+		= yield

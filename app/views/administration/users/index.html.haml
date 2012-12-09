@@ -1,0 +1,17 @@
+%h1 Пользователи
+
+%table
+  %tr
+    %th ФИО
+    %th Email
+    %th
+
+  - @administration_users.each do |administration_user|
+    %tr
+      %td= link_to administration_user.fio, edit_administration_user_path(administration_user)
+      %td= administration_user.email
+      %td= link_to 'Удалить', administration_user_path(administration_user), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Новый пользователь', new_administration_user_path

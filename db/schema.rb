@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 9) do
+ActiveRecord::Schema.define(:version => 20121208105510) do
+
+  create_table "actions", :force => true do |t|
+    t.string   "name"
+    t.string   "alias",       :null => false
+    t.string   "meta_k"
+    t.string   "meta_d"
+    t.text     "description"
+    t.boolean  "active"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "administration_users", :force => true do |t|
+    t.string   "fio"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "advantages", :force => true do |t|
+    t.string   "name"
+    t.string   "announce"
+    t.string   "avatar"
+    t.boolean  "active"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "deleted"
+  end
 
   create_table "brands", :force => true do |t|
     t.string   "name"
@@ -62,10 +90,11 @@ ActiveRecord::Schema.define(:version => 9) do
   end
 
   create_table "product_images", :force => true do |t|
-    t.string   "name",       :null => false
-    t.integer  "product_id", :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",                          :null => false
+    t.integer  "product_id",                    :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "main",       :default => false, :null => false
   end
 
   create_table "products", :force => true do |t|
@@ -87,6 +116,13 @@ ActiveRecord::Schema.define(:version => 9) do
     t.string   "avatar",                                                        :null => false
   end
 
+  create_table "products_actions", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "action_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "products_categories", :force => true do |t|
     t.integer  "product_id"
     t.integer  "category_id"
@@ -101,8 +137,5 @@ ActiveRecord::Schema.define(:version => 9) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
 end

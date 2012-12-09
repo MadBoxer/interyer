@@ -1,0 +1,2 @@
+module Pubic::UserHelper
+end

@@ -4,12 +4,19 @@
 		<%= stylesheet_link_tag    "application", :media => "all" %>
 		<% stylesheet_link_tag    "main", :media => "all" %>
   	    <%= javascript_include_tag "application" %>
+  	    <%= javascript_include_tag "public/jquery.form" %>
+  	    <%= javascript_include_tag "public/script" %>
 	    <%= csrf_meta_tags %>
 	</head>
 	
 	<body>
 		<div id="main">
-			<div id="menu"></div>
+			<div id="menu">
+				<%= render :partial => 'public/shared/up_menu'%>
+			</div>
 			<div id="banner"></div>
 			<div id="content">
 				<div id="content">
+					<div id="basket_header">
+						<%= render :partial => 'public/product/simple_cart'%>
+					</div>

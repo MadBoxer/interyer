@@ -1,0 +1,8 @@
+%ul
+  %li= link_to 'Главная', '/'
+  %li= link_to 'Акции', :controller => 'public/actions', :action => 'index'
+  
+-if @user
+  = @user.email
+-else
+  = link_to "Войти", :controller => 'user', :action => 'login', :remote => true

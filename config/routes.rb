@@ -1,4 +1,12 @@
 Interyer::Application.routes.draw do
+  namespace :administration do resources :users end
+
+  namespace :admin do resources :users end
+
+  namespace :administration do resources :advantages end
+
+  namespace :administration do resources :actions end
+
   namespace :administration do resources :brands end
 
   namespace :administration do resources :categories end
@@ -10,6 +18,8 @@ Interyer::Application.routes.draw do
   get '/add_to_cart/:id', :controller => 'public/cart', :action => 'add_to_cart', :id => :id
   get '/products/:prod_ref', :controller => 'public/product', :action => 'show', :prod_ref => :prod_ref
   get '/cart', :controller => 'public/cart', :action => 'show'
+  get '/actions', :controller => 'public/actions', :action => 'index'
+  get '/action/:action_name', :controller => 'public/actions', :action => 'show', :action_name => :action_name
   get '/:cat_ref', :controller => 'public/category', :action => 'show', :cat_ref => :cat_ref
   get '/:cat_ref/:prod_ref', :controller => 'public/product', :action => 'show', :cat_ref => :cat_ref, :prod_ref => :prod_ref
   get '/', :controller => 'public/category', :action => 'index'

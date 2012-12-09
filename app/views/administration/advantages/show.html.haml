@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @administration_advantage.name
+%p
+  %b Announce:
+  = @administration_advantage.announce
+%p
+  %b Avatar:
+  = @administration_advantage.avatar
+%p
+  %b Active:
+  = @administration_advantage.active
+
+= link_to 'Edit', edit_administration_advantage_path(@administration_advantage)
+\|
+= link_to 'Back', administration_advantages_path

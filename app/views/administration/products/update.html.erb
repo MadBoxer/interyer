@@ -1,7 +1,1 @@
-<% 
-	pi = ProductImage.new
-	pi.product_id = 11
-	pi.name = File.new(params['product_image'].original_filename)
-%>
-<%= debug(params['product_image']) %>
-<%= debug(pi) %>
+<%= debug(params['product']['actions']) %>

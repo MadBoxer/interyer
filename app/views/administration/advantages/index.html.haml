@@ -1,0 +1,13 @@
+%h1 Преимущества
+
+%table
+
+  - @advs.each do |a|
+    %tr
+      %td= link_to image_tag(a.avatar_url), edit_administration_advantage_path(a)
+      %td= link_to a.name, edit_administration_advantage_path(a)  
+      %td= link_to 'Destroy', administration_advantage_path(a), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Содать', new_administration_advantage_path

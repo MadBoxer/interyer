@@ -1,0 +1,63 @@
+<div class="product_properties_tab" data-number="1">
+<table>
+  <tr>
+    <td><%= f.label :name %></td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  
+  <tr>
+  	<td>Категории</td>
+  	<td>
+		<ul>
+			<%= hidden_field_tag 'product[category_ids][]', nil %>
+			<% @categories.each do |c|%>
+				<li>
+					<%= check_box_tag('product[category_ids][]', c.id, @administration_product.category_ids.include?(c.id))%>
+					<%= c.name %>
+				</li>
+			<% end %>
+		</ul>
+  	</td>
+  </tr>
+  <tr>
+    <td><%= f.label :meta_d %></td>
+    <td><%= f.text_field :meta_d %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :meta_k %></td>
+    <td><%= f.text_field :meta_k %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :price %></td>
+    <td><%= f.text_field :price %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :garranty %></td>
+    <td><%= f.text_field :garranty %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :duration %></td>
+    <td><%= f.text_field :duration %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :delivery %></td>
+    <td><%= f.text_field :delivery %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :notice %></td>
+    <td><%= f.text_field :notice %></td>
+  </tr>
+  <tr>
+    <td><%= f.label 'Ссылка' %></td>
+    <td><%= f.text_field :alias %></td>
+  </tr>
+  <tr>
+    <td><%= f.label 'Главная страница' %></td>
+    <td><%= check_box('product', 'main_page', {:checked => @administration_product.main_page})%></td>
+  </tr>
+  <tr>
+    <td><%= f.label :description %></td>
+    <td><%= f.text_area :description, :class=>"tinymce", :rows => 20, :cols => 70 %></td>
+  </tr>
+</table>
+</div>

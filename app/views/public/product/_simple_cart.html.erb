@@ -1,4 +1,4 @@
-<div id="simple_cart">
+<div class="simple_cart">
 <% if @cart.items.length > 0 %>
 	В вашей <%= link_to "корзине", :controller => :cart, :action => :show %> <span id="simple_cart_product_number"><%= @cart.items.length %></span> товаров
 <% else %>

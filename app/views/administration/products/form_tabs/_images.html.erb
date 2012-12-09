@@ -1,0 +1,25 @@
+<div class="product_properties_tab" data-number="3" style="display:none;">
+	<table>
+		<tr>
+	    <td><%= f.label 'Изображение' %></td>
+	    <td><%= file_field_tag 'product_image' %></td>
+	  </tr>
+	  <tr>
+	    <td></td>
+	    <td>
+	    	<% if @administration_product.product_images.length > 0 %>
+		    	<%  @administration_product.product_images.each do |image| %>
+		    		<div class="admin_prod_image_gallery_item">
+		    			<div class="admin_prod_image_gallery_item_mini">
+		    				<%= image_tag image.name_url(:mini), :size=>'100x100'%>
+		    			</div>
+		    			<div class="admin_prod_image_gallery_item_main">
+		    				<%= radio_button_tag('main_product_image', image.id, image.main)%>
+		    			</div>
+		    		</div>
+		    	<% end %>
+	    	<% end %>
+	    </td>
+	  </tr>
+  	</table>
+</div>

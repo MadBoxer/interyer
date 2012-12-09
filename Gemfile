@@ -28,6 +28,8 @@ gem 'russian', '~> 0.6.0'
 
 gem 'carrierwave'
 gem 'rmagick'
+gem 'haml-rails'
+gem 'authlogic'
 #gem 'will_paginate', '> 3.0'
 
 # To use ActiveModel has_secure_password

@@ -1,4 +1,5 @@
-var str = "<% escape_javascript(render(:template => 'public/cart/cart_table_body')) %>";
+var str = "<%= escape_javascript(render(:template => 'public/cart/cart_table_body')) %>";
+
 if(str != "")
 	$('#cart_table tbody').html(str);
 else

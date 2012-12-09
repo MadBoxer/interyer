@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Fio:
+  = @administration_user.fio
+%p
+  %b Email:
+  = @administration_user.email
+
+= link_to 'Edit', edit_administration_user_path(@administration_user)
+\|
+= link_to 'Back', administration_users_path

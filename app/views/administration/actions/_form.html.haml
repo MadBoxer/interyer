@@ -1,0 +1,33 @@
+= tinymce_assets
+= tinymce
+= form_for [:administration, @administration_action] do |f|
+  - if @administration_action.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@administration_action.errors.count, "error")} prohibited this administration_action from being saved:"
+      %ul
+        - @administration_action.errors.full_messages.each do |msg|
+          %li= msg
+  %table
+    %tr
+      %td= f.label "Название"
+      %td= text_field :action_item, :name, :value => @administration_action.name
+    %tr
+      %td= f.label "Ссылка"
+      %td= text_field :action_item, :alias, :value => @administration_action.alias
+    %tr
+      %td= f.label "Ключевые слова"
+      %td= text_field :action_item, :meta_k, :value => @administration_action.meta_k
+    %tr
+      %td= f.label "Метаописание"
+      %td= text_field :action_item, :meta_d, :value => @administration_action.meta_d
+    %tr
+      %td= f.label "Текст"
+      %td= text_area :action_item, :description, :value => @administration_action.description, :class => :tinymce
+    %tr
+      %td= f.label "Активнсть"
+      %td= check_box :action_item, :active, :checked => @administration_action.active
+    %tr
+      %td
+      %td= f.submit 'ОК'
+      
+

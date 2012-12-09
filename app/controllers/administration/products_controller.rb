@@ -1,9 +1,15 @@
 class Administration::ProductsController < ApplicationController
   # GET /administration/products
   # GET /administration/products.json
-  before_filter :set_alias, :only => [:create, :update]
+  layout 'administration/product'
+
+  before_filter :only => [:create, :update] do
+    if params[:product][:alias].empty?
+      params[:product][:alias] = Russian::transliterate(params[:product][:name]).downcase.parameterize
+    end
+  end
   def index
-    @administration_products = Product.all
+    @administration_products = Product.page(params[:page]).per(20)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -63,21 +69,21 @@ class Administration::ProductsController < ApplicationController
   # PUT /administration/products/1
   # PUT /administration/products/1.json
   def update
-    @administration_product = Product.find(params[:id])
-=begin
-    pi = ProductImage.new_based_on(params['product_image'])
-   
-    @administration_product.product_images.push pi
+    @product = Product.find(params[:id])
+    @product.admin_update_images params
+    
+#=begin 
+    
     respond_to do |format|
-      if @administration_product.update_attributes(params[:product])
+      if @product.update_attributes(params[:product])
         format.html { redirect_to :back, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @administration_product.errors, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
-=end
+#=end
   end
 
   # DELETE /administration/products/1

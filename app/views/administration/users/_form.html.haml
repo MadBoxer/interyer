@@ -1,0 +1,18 @@
+= form_for [:administration, @administration_user] do |f|
+  - if @administration_user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@administration_user.errors.count, "error")} prohibited this administration_user from being saved:"
+      %ul
+        - @administration_user.errors.full_messages.each do |msg|
+          %li= msg
+
+  %table
+    %tr
+      %td= f.label 'ФИО'
+      %td= f.text_field :fio
+    %tr
+      %td= f.label 'E-mail'
+      %td= f.text_field :email
+    %tr
+      %td
+      %td= f.submit 'Сохранить'

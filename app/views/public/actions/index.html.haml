@@ -1,0 +1,4 @@
+-unless Action.active.empty?
+  %ul
+    -Action.active.each do |a|
+      =link_to a.name, :action => 'show', :action_name => a.alias

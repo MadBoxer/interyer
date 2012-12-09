@@ -1,0 +1,8 @@
+.product_properties_tab{:data => {:number => "2"}, :style => "display:none;"}
+  = hidden_field 'product[action_ids]', nil
+  -unless Action.active.empty?
+    %table
+    -Action.active.each do |a|
+      %tr
+        %td= check_box_tag 'product[action_ids][]', a.id, @administration_product.actions.include?(a)
+        %td= a.name

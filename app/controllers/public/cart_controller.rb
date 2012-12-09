@@ -23,4 +23,8 @@ class Public::CartController < ApplicationController
   def find_or_create
     session[:cart] ||= Cart.new
   end
+  
+  def create_order
+    
+  end
 end

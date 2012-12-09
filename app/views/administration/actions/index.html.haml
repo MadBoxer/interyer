@@ -1,0 +1,17 @@
+%h1 Акции
+
+%table
+  %tr
+    %th Название
+    %th Активность
+    %th
+
+  - @administration_actions.each do |administration_action|
+    %tr
+      %td= link_to administration_action.name, edit_administration_action_path(administration_action)
+      %td= administration_action.active ? 'Да' : 'Нет'
+      %td= link_to 'Удалить', administration_action_path(administration_action), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Создать', new_administration_action_path
