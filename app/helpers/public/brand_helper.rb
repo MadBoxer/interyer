@@ -1,0 +1,2 @@
+module Public::BrandHelper
+end

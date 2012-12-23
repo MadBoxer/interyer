@@ -1,0 +1,16 @@
+= form_for [:administration, @surface] do |f|
+  = render :partial => 'administration/shared/errors', :locals => {:object => @surface}
+
+  %table
+    %tr
+      %td= f.label "Название"
+      %td= f.text_field :name
+    %tr
+      %td= f.label "Изображение"
+      %td= f.file_field :avatar
+    %tr
+      %td= f.label "Активность"
+      %td= f.check_box :active
+    %tr
+      %td
+      %td= f.submit 'Сохранить'

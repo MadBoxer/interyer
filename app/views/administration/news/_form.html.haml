@@ -1,0 +1,27 @@
+= tinymce_assets
+= tinymce
+
+= form_for [:administration, @news] do |f|
+  = render :partial => 'public/shared/errors', :locals => {:object => @news}
+  %table
+    %tr
+      %td= f.label 'Название'
+      %td= f.text_field :name
+    %tr
+      %td= f.label 'Ссылка'
+      %td= f.text_field :alias
+    %tr
+      %td= f.label 'Дата'
+      %td= f.date_select :date
+    %tr
+      %td= f.label 'Анонс'
+      %td= f.text_area :announce, :class => 'tinymce', :rows => 10
+    %tr
+      %td= f.label 'Текст'
+      %td= f.text_area :text, :class => 'tinymce', :rows => 10
+    %tr
+      %td= f.label 'Активность'
+      %td= f.check_box :active
+    %tr
+      %td
+      %td= f.submit 'Сохранить'

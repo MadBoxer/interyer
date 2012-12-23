@@ -1,0 +1,22 @@
+= flash[:notice]
+= form_tag({:controller => 'public/user', :action => 'add_user'}, :method => 'post', :id => 'user_reg_form') do
+  = render :partial => 'public/shared/errors', :locals => {:object => @user}
+  %table
+    %tr
+      %td ФИО*
+      %td= text_field('user', 'fio')
+    %tr
+      %td E-mail*
+      %td= text_field('user', 'email')
+    %tr
+      %td Телефон
+      %td= text_field('user', 'phone')
+    %tr
+      %td Пароль*
+      %td= password_field('user', 'password')
+    %tr
+      %td Подтвердите пароль*
+      %td= password_field('user', 'confirm_password')
+    %tr
+      %td
+      %td= submit_tag('OK')

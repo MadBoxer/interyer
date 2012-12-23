@@ -4,13 +4,18 @@
     <td><%= f.label :name %></td>
     <td><%= f.text_field :name %></td>
   </tr>
+
+  <tr>
+    <td><%= f.label "Артикул" %></td>
+    <td><%= f.text_field :article %></td>
+  </tr>
   
   <tr>
   	<td>Категории</td>
   	<td>
-		<ul>
+		<ul class="list_none">
 			<%= hidden_field_tag 'product[category_ids][]', nil %>
-			<% @categories.each do |c|%>
+			<% Category.avail('parent_id > 0').each do |c|%>
 				<li>
 					<%= check_box_tag('product[category_ids][]', c.id, @administration_product.category_ids.include?(c.id))%>
 					<%= c.name %>
@@ -18,6 +23,10 @@
 			<% end %>
 		</ul>
   	</td>
+  </tr>
+  <tr>
+    <td><%= f.label 'Бренд' %></td>
+    <td><%= f.select 'brand_id', [['Выберите бренд', 0]] + Brand.avail.collect{|b| [b.name, b.id]} %></td>
   </tr>
   <tr>
     <td><%= f.label :meta_d %></td>

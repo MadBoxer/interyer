@@ -1,0 +1,22 @@
+%h1 Заказы
+
+%table{:cellspacing => 0, :border => 1, :cellpadding => 10}
+  %tr
+    %th №
+    %th ID
+    %th Дата
+    %th Пользователь
+    %th Сумма
+    %th 
+    %th
+
+  - @orders.each_with_index do |order, i|
+    -total = order.cart_items.inject(0.00) {|sum, item| sum + item.quantity*item.product.price}
+    %tr
+      %td= i+1
+      %td= order.id
+      %td= order.created_at.strftime '%d.%m.%Y'
+      %td= order.user ? order.user.email : 'Без регистрации'
+      %td= total
+      %td= link_to 'Показать', administration_order_path(order)
+      %td= link_to 'Удалить', administration_order_path(order), method: :delete, data: { confirm: 'Are you sure?' }

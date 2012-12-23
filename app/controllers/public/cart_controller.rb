@@ -14,6 +14,11 @@ class Public::CartController < ApplicationController
   def delete_from_cart
     @cart.delete_from_cart Product.find(params[:product_id])
   end
+
+  def reset_cart
+    @cart.reset_cart(params[:product])
+    redirect_to '/cart'
+  end
   
   private #-------------
   
@@ -23,8 +28,7 @@ class Public::CartController < ApplicationController
   def find_or_create
     session[:cart] ||= Cart.new
   end
+
+
   
-  def create_order
-    
-  end
 end

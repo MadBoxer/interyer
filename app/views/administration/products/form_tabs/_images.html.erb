@@ -1,6 +1,6 @@
 <div class="product_properties_tab" data-number="3" style="display:none;">
 	<table>
-		<tr>
+      <tr>
 	    <td><%= f.label 'Изображение' %></td>
 	    <td><%= file_field_tag 'product_image' %></td>
 	  </tr>
@@ -21,5 +21,22 @@
 	    	<% end %>
 	    </td>
 	  </tr>
+      <tr>
+        <td>Поверхности</td>
+        <td>
+            <% surfaces = Surface.avail %>
+            <% if surfaces.length > 0 %>
+
+            <ul class="list_none">
+                <% Surface.avail.each do |s| %>
+                    <li>
+                      <%= check_box_tag 'product[surface_ids][]', s.id, @administration_product.surfaces.include?(s) %>
+                      <%= s.name %>
+                    </li>
+                <% end %>
+            </ul>
+            <% end %>
+        </td>
+      </tr>
   	</table>
 </div>

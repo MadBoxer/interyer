@@ -1,0 +1,18 @@
+%li
+  .prod_list_price
+    Цена:
+    - if product.discount
+      %s= (10 * ((product.price / (1-product.discount.value.to_f/100)/10.0).ceil)).to_s
+    %strong= product.price.round.to_s + ' руб'
+  -if params[:cat_ref]
+    .image_container
+      =link_to image_tag(product.product_images.empty? ? '/images/no_image.png' : product.product_images.main.first.name_url(:mini), :height => '150'), :controller => :product, :action => :show, :cat_ref => Category.where(:alias => params[:cat_ref]).first.alias, :prod_ref => (!product.alias.empty? ? product.alias : product.id.to_s)
+      - if product.discount
+        .prod_list_discount
+          = product.discount.value.to_s + '%'
+    .clear
+    =link_to product.name, :controller => :product, :action => :show, :cat_ref => Category.where(:alias => params[:cat_ref]).first.alias, :prod_ref => (!product.alias.empty? ? product.alias : product.id.to_s)
+  -else
+    =link_to image_tag(product.product_images.empty? ? '/images/no_image.png' : product.product_images.main.first.name_url(:mini), :height => '150'), :controller => :product, :action => :show, :prod_ref => product.alias
+    .clear
+    =link_to product.name, :controller => :product, :action => :show, :prod_ref => product.alias

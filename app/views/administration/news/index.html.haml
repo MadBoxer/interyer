@@ -1,0 +1,19 @@
+%h1 Новости
+
+%table
+  %tr
+    %th Название
+    %th Дата
+    %th Активна
+    %th
+
+  - @news.each do |n|
+    %tr
+      %td= link_to n.name, edit_administration_news_path(n)
+      %td= n.date.strftime('%d.%m.%Y')
+      %td= n.active ? 'Да' : 'Нет'
+      %td= link_to 'Удалить', administration_news_path(n), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Создать', new_administration_news_path

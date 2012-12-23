@@ -1,33 +1,21 @@
-<h1>Listing administration_brands</h1>
+<h1>Бренды</h1>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Meta d</th>
-    <th>Meta k</th>
-    <th>Active</th>
-    <th>Trash</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
+    <th>Название</th>
+    <th>Активность</th>
     <th></th>
   </tr>
 
-<% @administration_brands.each do |administration_brand| %>
+<% @brands.each do |brand| %>
   <tr>
-    <td><%= administration_brand.name %></td>
-    <td><%= administration_brand.meta_d %></td>
-    <td><%= administration_brand.meta_k %></td>
-    <td><%= administration_brand.active %></td>
-    <td><%= administration_brand.trash %></td>
-    <td><%= administration_brand.description %></td>
-    <td><%= link_to 'Show', administration_brand %></td>
-    <td><%= link_to 'Edit', edit_administration_brand_path(administration_brand) %></td>
-    <td><%= link_to 'Destroy', administration_brand, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to brand.name, edit_administration_brand_path(brand) %></td>
+    <td><%= brand.active ? 'Да' : 'Нет' %></td>
+    <td><%= link_to 'Удалить', administration_brand_path(brand), confirm: 'Вы уверены?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Brand', new_administration_brand_path %>
+<%= link_to 'Создать', new_administration_brand_path %>

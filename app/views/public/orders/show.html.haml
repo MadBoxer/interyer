@@ -1,0 +1,24 @@
+%p#notice= flash[:notice]
+
+%p
+  %b ФИО:
+  = @order.user ? @order.user.fio : @order.fio
+%p
+  %b E-mail:
+  = @order.user ? @order.user.email : @order.email
+%p
+  %b Телефон:
+  = @order.user ? @order.user.phone : @order.phone
+  
+%p
+  %b Телефон для связи:
+  = @order.phone
+%p
+  %b Доставка:
+  = @order.delivery ? 'Да' : 'Нет'
+%p
+  %b Адрес доставки:
+  = @order.address
+%p
+  %b Подъем:
+  = @order.up ? 'Да' : 'Нет'

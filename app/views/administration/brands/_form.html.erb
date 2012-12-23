@@ -1,41 +1,45 @@
-<%= form_for(@administration_brand) do |f| %>
-  <% if @administration_brand.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@administration_brand.errors.count, "error") %> prohibited this administration_brand from being saved:</h2>
-
-      <ul>
-      <% @administration_brand.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :meta_d %><br />
-    <%= f.text_field :meta_d %>
-  </div>
-  <div class="field">
-    <%= f.label :meta_k %><br />
-    <%= f.text_field :meta_k %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="field">
-    <%= f.label :trash %><br />
-    <%= f.check_box :trash %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= tinymce_assets %>
+<%= tinymce %>
+<%= form_for([:administration, @brand]) do |f| %>
+  <%= render :partial => 'administration/shared/errors', :locals => {:object => @brand} %>
+  <table>
+    <tr>
+      <td><%= f.label 'Название' %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Ссылка' %></td>
+      <td><%= f.text_field :alias %></td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Метаописание' %></td>
+      <td><%= f.text_field :meta_d %></td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Ключевые слова' %></td>
+      <td><%= f.text_field :meta_k %></td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Активность' %></td>
+      <td><%= f.check_box :active %></td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Изображение' %></td>
+      <td><%= f.file_field :avatar %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= @brand.avatar.file && @brand.avatar.file.exists? ? image_tag(@brand.avatar.mini) : '' %>
+      </td>
+    </tr>
+    <tr>
+      <td><%= f.label 'Описание' %></td>
+      <td><%= f.text_area :description, :class => 'tinymce' %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit %></td>
+    </tr>
+  </table>
 <% end %>

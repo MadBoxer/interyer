@@ -1,0 +1,19 @@
+%h1 Скидки
+
+%table
+  %tr
+    %th Название
+    %th Размер
+    %th Активность
+    %th
+
+  - @discounts.each do |discount|
+    %tr
+      %td= link_to discount.name, edit_administration_discount_path(discount)
+      %td= discount.value.to_s + '%'
+      %td= discount.active ? 'Да' : 'Нет'
+      %td= link_to 'Удалить', administration_discount_path(discount), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Создать', new_administration_discount_path

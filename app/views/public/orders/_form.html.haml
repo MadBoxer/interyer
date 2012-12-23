@@ -1,0 +1,49 @@
+- unless @cart.items.empty?
+  = form_for [:public, @order] do |f|
+    = render :partial => 'public/shared/errors', :locals => {:object => @order} 
+    = f.hidden_field :user_id, :value => @user ? @user.id : ''
+    %table
+      %tr
+        %td
+          ФИО
+          %span{:class => 'nessessary'}*
+        %td= text_field 'order', 'fio', :value => @user ? @user.fio : '', :readonly => @user ? true : false
+        %td
+      %tr
+        %td
+          E-mail
+          %span{:class => 'nessessary'}*
+        %td= text_field 'order', 'email', :value => @user ? @user.email : '', :readonly => @user ? true : false
+        %td
+      %tr
+        %td
+          Телефон
+          %span{:class => 'nessessary'}*
+        %td= text_field 'order', 'phone', :value => @user ? @user.phone : '', :readonly => @user ? true : false
+        %td{:id => 'format_number', :class => 'legend'} Формат номера - 89117654321
+      %tr
+        %td
+          = f.label 'Адрес'
+          %span{:class => 'nessessary'}*
+        %td= f.text_field :address
+        %td
+      %tr
+        %td= f.label 'Подъем'
+        %td= f.check_box :up
+        %td
+      %tr
+        %td= f.label 'Доставка'
+        %td= f.check_box :delivery
+        %td
+      %tr
+        %td
+          = f.label 'Телефон для связи'
+          %span{:class => 'nessessary'}*
+        %td= f.text_field :phone, :value => @user ? @user.phone : ''
+        %td{:id => 'format_number', :class => 'legend'} Формат номера - 89117654321
+      %tr
+        %td
+        %td= f.submit @user ? 'Оформить' : 'Оформить без регистрации'
+        %td
+-else
+  Ваша корзина пуста

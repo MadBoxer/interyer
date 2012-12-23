@@ -1,0 +1,5 @@
+.search_inner_div
+  Поиск
+  = form_tag({:controller => 'public/product', :action => 'search'}, :method => 'get') do
+    %input{:name => 'search'}
+    = submit_tag 'Поиск'

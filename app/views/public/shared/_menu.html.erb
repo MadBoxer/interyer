@@ -1,7 +1,7 @@
 <div id="cat_menu">
 	<ul>
 	<% getCategoryMenu do |c|%>
-		<li><%= link_to c.name, c.alias %>
+		<li><%= link_to c.name, '/' + c.alias %>
 			<% if c.categories.length > 0 %>
 				<ul>
 			<% end %>

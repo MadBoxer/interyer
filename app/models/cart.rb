@@ -18,6 +18,8 @@ class Cart
   end
   
   def delete_from_cart(product)
+    @items.delete(@items.find{|i| i.product_id == product.id})
+=begin
     @items.each_index do |index|
       if @items[index].product_id == product.id
         @items.delete_at index
@@ -26,8 +28,26 @@ class Cart
         end
       end
     end
+=end
+    reset_total_price
+  end
+  
+  def clear
+    @items = []
+    @total_price = 0.00
+  end
+
+  def reset_cart(params)
+    params.each_pair do |key, val|
+      @items.find {|item| item.product_id == key.to_i}.quantity = val
+    end
+    reset_total_price
   end
   
   private #---------------
+
+  def reset_total_price
+    @total_price = @items.inject(0.00){|sum, item| sum += item.product.price.to_f*item.quantity}.to_i
+  end
   
 end

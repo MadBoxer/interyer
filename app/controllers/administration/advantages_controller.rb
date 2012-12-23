@@ -1,6 +1,7 @@
-class Administration::AdvantagesController < ApplicationController
+class Administration::AdvantagesController < Administration::AdministrationController
   # GET /administration/advantages
   # GET /administration/advantages.json
+
   def index
     @advs = Advantage.all
 

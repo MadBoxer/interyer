@@ -1,0 +1,25 @@
+= form_for @user, :url => '/register' do |f|
+  =render :partial => 'public/shared/errors', :locals => {:object => @user}
+
+  %table
+    %tr
+      %td ФИО*
+      %td= f.text_field :fio
+    %tr
+      %td E-mail*
+      %td= f.text_field :email
+    %tr
+      %td Телефон
+      %td= f.text_field :phone
+    %tr
+      %td Пароль*
+      %td= f.password_field :password
+    %tr
+      %td Подтвердите пароль*
+      %td= f.password_field :password_confirmation
+      -#TODO Confirm password
+    %tr
+      %td
+      %td= f.submit 'OK', :name => 'submit'
+  
+  

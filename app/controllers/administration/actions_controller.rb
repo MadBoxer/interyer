@@ -1,7 +1,7 @@
-class Administration::ActionsController < ApplicationController
+class Administration::ActionsController < Administration::AdministrationController
   # GET /administration/actions
   # GET /administration/actions.json
-  
+
   before_filter :only => [:create, :update] do
     if params[:action_item][:alias].empty?
       params[:action_item][:alias] = Russian::transliterate(params[:action_item][:name]).downcase.parameterize

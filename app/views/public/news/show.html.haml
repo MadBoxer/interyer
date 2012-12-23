@@ -1,0 +1,3 @@
+%h2= @news_item.name
+.content_show= @news_item.text.html_safe
+.content_data= @news_item.date.strftime("%d.%m.%Y")

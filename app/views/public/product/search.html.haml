@@ -1,0 +1,6 @@
+- unless @products.empty?
+  %ul#products_list
+    - @products.each do |p|
+      = render :partial => 'product', :locals => {:product => p}
+- else
+  По вашему запросу ничего не найдено

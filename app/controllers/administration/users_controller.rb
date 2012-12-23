@@ -1,6 +1,7 @@
-class Administration::UsersController < ApplicationController
+class Administration::UsersController < Administration::AdministrationController
   # GET /administration/users
   # GET /administration/users.json
+
   def index
     @administration_users = User.all
 

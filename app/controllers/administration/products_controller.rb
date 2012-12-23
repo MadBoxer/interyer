@@ -1,4 +1,4 @@
-class Administration::ProductsController < ApplicationController
+class Administration::ProductsController < Administration::AdministrationController
   # GET /administration/products
   # GET /administration/products.json
   layout 'administration/product'
@@ -31,10 +31,7 @@ class Administration::ProductsController < ApplicationController
   # GET /administration/products/new
   # GET /administration/products/new.json
   def new
-    @categories = Category.available('parent_id > 0')
     @administration_product = Product.new
-
-   
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @administration_product }
@@ -44,7 +41,6 @@ class Administration::ProductsController < ApplicationController
   # GET /administration/products/1/edit
   def edit
     @administration_product = Product.find(params[:id])
-    @categories = Category.available('parent_id > 0')
   end
 
   # POST /administration/products
@@ -53,12 +49,8 @@ class Administration::ProductsController < ApplicationController
     @administration_product = Product.new(params[:product])
     respond_to do |format|
       if @administration_product.save
-        if defined? params[:current_category_redirect]
-          format.html { redirect_to :controller => :categories, :action => :show, :id => params[:current_category_redirect], notice: 'Product was successfully created.' }
-        else
-          format.html { redirect_to [:administration, @administration_product], notice: 'Product was successfully created.' }
+          format.html { redirect_to administration_product_path(@administration_product), notice: 'Product was successfully created.' }
           format.json { render json: @administration_product, status: :created, location: @administration_product }
-        end
       else
         format.html { render action: "new" }
         format.json { render json: @administration_product.errors, status: :unprocessable_entity }
@@ -69,18 +61,18 @@ class Administration::ProductsController < ApplicationController
   # PUT /administration/products/1
   # PUT /administration/products/1.json
   def update
-    @product = Product.find(params[:id])
-    @product.admin_update_images params
+    @administration_product = Product.find(params[:id])
+    @administration_product.admin_update_images params
     
 #=begin 
     
     respond_to do |format|
-      if @product.update_attributes(params[:product])
-        format.html { redirect_to :back, notice: 'Product was successfully updated.' }
+      if @administration_product.update_attributes(params[:product])
+        format.html { redirect_to edit_administration_product_url(@administration_product), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: @administration_product.errors, status: :unprocessable_entity }
       end
     end
 #=end

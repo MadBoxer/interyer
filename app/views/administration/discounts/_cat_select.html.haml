@@ -1,0 +1,5 @@
+- unless categories.empty?
+  - cts = categories.collect do |cat|
+    - [cat.name, cat.id]
+  .cat_select
+    =select_tag(name, options_for_select(cts), :style => 'width:150px')

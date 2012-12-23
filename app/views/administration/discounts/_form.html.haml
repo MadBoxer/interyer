@@ -1,0 +1,43 @@
+= tinymce_assets
+= tinymce
+
+= form_for [:administration, @discount] do |f|
+  =render :partial => 'administration/shared/errors', :locals => {:object => @discount}
+  =f.hidden_field :id
+  %table
+    %tr
+      %td= f.label 'Название'
+      %td= f.text_field :name
+    %tr
+      %td= f.label 'Размер'
+      %td= f.number_field :value
+    %tr
+      %td= f.label 'Активность'
+      %td= f.check_box :active
+    %tr
+      %td= f.label 'Описание'
+      %td= f.text_area :description, :class => 'tinymce', :cols => 40, :rows => 10
+    %tr.actions
+      %td
+      %td= f.submit 'Сохранить'
+
+  %hr
+    %table
+      - @products.each do |p|
+        %tr
+          %td= check_box 'products', p.id, {:checked => true}
+          %td= p.name
+  %hr
+  %p
+    Категория
+    - parents = Category.root.collect do |cat|
+      - unless cat.parent
+        - cat
+
+    =render :partial => 'cat_select', :locals => {:categories => parents, :name => 'parent_category'}
+    .children_cats
+
+    #product_list
+    =button_tag 'Искать', :type => 'button', :id => 'get_cat_products'
+
+

@@ -1,0 +1,5 @@
+= form_for [:administration, @order] do |f|
+  =render :partial => 'shared/errors', :locals => {:object => @order}
+
+  .actions
+    = f.submit 'Save'

@@ -10,10 +10,24 @@
 	<% end %>
 	<%= print_field @product.name, "Название"%>
 	<%= print_field @product.price, "Цена"%>
+    <tr>
+      <td>Бренд</td>
+      <td><%= @product.brand.name %></td>
+    </tr>
 	<%= print_field @product.garranty, "Гарантия"%>
 	<%= print_field @product.duration, "Исполнение"%>
 	<%= print_field @product.delivery, "Доставка"%>
 	<%= print_field @product.notice, "Примечания"%>
+    <% unless @product.surfaces.empty? %>
+        <tr>
+          <td>Цвета</td>
+          <td>
+            <% @product.surfaces.avail.each do |s| %>
+                <%= image_tag s.avatar.mini.url, :title => s.name%>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
 </table>
 <%= link_to 'Добавить', {:controller => 'public/cart', :action => :add_to_cart, :id => @product.id}, :remote => true %>
 <%= strip_tags(@product.description) %>

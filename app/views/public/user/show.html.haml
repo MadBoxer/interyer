@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Fio:
+  = @public_user.fio
+%p
+  %b Email:
+  = @public_user.email
+%p
+  %b Phone:
+  = @public_user.phone
+%p
+  %b Password:
+  = @public_user.password
+
+= link_to 'Edit', edit_public_user_path(@public_user)
+\|
+= link_to 'Back', public_users_path

@@ -9,7 +9,7 @@
 #main
 {
   margin:0 auto;
-  width:1000px;
+  width:1050px;
 }
 #menu
 {
@@ -36,11 +36,12 @@
 #main_content
 {
   min-height:450px;
-  width:80%;
+  width:800px;
   float:left;
 }
 #footer
 {
+  float:left;
   height:150px;
   width:100%;
   border:1px solid gray;
@@ -51,14 +52,37 @@
 }
 #products_list > li
 {
+  padding:5px;
   display:block;
-  width:240px;
-  height:180px;
+  width:230px;
+  height:190px;
   border:1px solid black;
   float:left;
   margin:10px;
 }
+#cat_menu{
+  width:230px;
+}
 #cat_menu > ul li ul
 {
   padding:0px;
+}
+.image_container
+{
+  position: relative;
+  float:left;
+  margin-left:10px;
+}
+.prod_list_discount
+  {
+  position:absolute;
+  right:5px;
+  bottom:20px;
+  color:red;
+  font-size: 25px;
+  font-weight: bold;
+}
+.search_inner_div{
+  width:100%;
+  float:left;
 }

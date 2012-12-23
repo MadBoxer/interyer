@@ -1,8 +1,11 @@
 %ul
   %li= link_to 'Главная', '/'
   %li= link_to 'Акции', :controller => 'public/actions', :action => 'index'
-  
+  %li= link_to 'Новости', :controller => 'public/news', :action => 'index'
+
 -if @user
   = @user.email
+  = link_to "Выйти", {:controller => 'public/user', :action => 'unlogin'}
 -else
-  = link_to "Войти", :controller => 'user', :action => 'login', :remote => true
+  = link_to "Войти", {:controller => 'public/user', :action => 'login'}
+  = link_to "Регистрация", '/register'

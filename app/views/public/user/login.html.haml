@@ -1,11 +1,12 @@
-= form_tag(:controller => 'public')
+= flash[:notice]
+= form_tag({:controller => 'public/user', :action => 'authorize'}, :method => 'post')
 %table
   %tr
-    %td "E-mail"
+    %td E-mail
     %td= text_field('user', 'email')
   %tr
-    %td "Пароль"
+    %td Пароль
     %td= password_field('user', 'password')
   %tr
     %td
-    %td= submit_field('user', 'email')
+    %td= submit_tag('OK')

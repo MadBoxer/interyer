@@ -1,0 +1,55 @@
+%p#notice= @order.ready ? 'Заказ готов' : ''
+
+%h3 Информация о пользователе
+%p
+  %b ФИО:
+  = @order.user.fio
+%p
+  %b E-mail:
+  = @order.user.email
+%p
+  %b Телефон:
+  = @order.user.phone
+
+%h3 Информация о заказе
+%p
+  %b Телефон для связи:
+  = @order.phone
+%p
+  %b Доставка:
+  = @order.delivery ? 'Да' : 'Нет'
+%p
+  %b Адрес доставки:
+  = @order.address
+%p
+  %b Подъем:
+  = @order.up ? 'Да' : 'Нет'
+  
+-# @order.cart_items.inject(0.0){|sum, item| sum + item.product.price*item.quantity}
+%table{:border => 1}
+  %tr
+    %th №
+    %th Товар
+    %th Количество
+    %th Цена
+    %th Сумма
+  -@order.cart_items.each_with_index do |item, i|
+    %tr
+      %td= i+1
+      %td= item.product.name
+      %td= item.quantity
+      %td= item.product.price
+      %td= item.product.price*item.quantity
+    %tr
+      %th{:colspan => 4}
+      %th= 'Итого: ' + @order.get_total.to_s + ' руб'
+= link_to 'Назад', administration_orders_path
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@ module ApplicationHelper
   end
   
   class ActiveRecord::Base
-    def self.available(cond = nil)
+    def self.avail(cond = nil)
       if cond
         self.where(:active => 1, :trash => 0).where(cond)
       else

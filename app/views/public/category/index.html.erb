@@ -1,7 +1,5 @@
-<ul>
+<ul id="products_list">
 	<% @products.each do |p| %>
-		<li>
-			<%= link_to p.name, :controller => 'public/product', :action => 'show', :prod_ref => p.alias %>
-		</li>
+      <%= render :partial => 'public/product/product', :locals => {:product => p} %>
 	<% end %>
 </ul>

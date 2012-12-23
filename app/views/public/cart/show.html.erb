@@ -8,31 +8,7 @@
 		});
 	});
 </script>
-<% if @cart.items.length > 0 %>
-<%= form_tag :controller => 'public/cart', :action => 'create_order' do %>
-<table border=1 cellpadding=2 id="cart_table">
-	<thead>
-		<tr>
-			<th>№</th>
-			<th>Название</th>
-			<th>Количество</th>
-			<th>Сумма</th>
-			<th>Удалить</th>
-		</tr>
-	</thead>
-	<tbody>
-		<%= render :template => 'public/cart/cart_table_body' %>
-	</tbody>
-	<tfoot>
-		<tr>
-			<th colspan="3"></th>
-			<th>Итого: <%= @cart.total_price.to_i%> руб</th>
-		</tr>
-		<tr>
-			<th colspan="3"></th>
-			<th><%= submit_tag 'Оформить заказ'%></th>
-		</tr>
-	</tfoot>
-</table>
-<% end %>
-<% end %>
+
+<div id="cart_table_div">
+  <%= render :template => 'public/cart/cart_table_body' %>
+</div>

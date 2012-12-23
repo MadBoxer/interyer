@@ -1,0 +1,5 @@
+- @news.each do |n|
+  .list_view_block
+    %h3= link_to n.name, :action => 'show', :news_ref => n.alias
+    .list_view_announce.pre= n.announce.html_safe
+    %p= n.date.strftime('%d.%m.%Y')

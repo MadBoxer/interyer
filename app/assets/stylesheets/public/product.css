@@ -1,0 +1,14 @@
+.image_container
+{
+    position: relative;
+    float:left;
+}
+.prod_list_discount
+{
+    position:absolute;
+    right:5px;
+    bottom:20px;
+    color:red;
+    font-size: 25px;
+    font-weight: bold;
+}

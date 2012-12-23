@@ -1,0 +1,17 @@
+%h1 Поверхности
+
+%table
+  %tr
+    %th Название
+    %th Изображение
+    %th
+
+  - @surfaces.each do |surface|
+    %tr
+      %td= link_to surface.name, edit_administration_surface_path(surface)
+      %td= image_tag surface.avatar.mini.url, :size => '20x20'
+      %td= link_to 'Удалить', administration_surface_path(surface), method: :delete, data: { confirm: 'Вы уверены?' }
+
+%br
+
+= link_to 'Создать', new_administration_surface_path

@@ -1,6 +1,6 @@
 var str = "<%= escape_javascript(render(:template => 'public/cart/cart_table_body')) %>";
 
 if(str != "")
-	$('#cart_table tbody').html(str);
+	$('#cart_table_div').html(str);
 else
-	$('#cart_table').parent().html('Ваша корзина пуста');
+	$('#cart_table_div').html('Ваша корзина пуста');

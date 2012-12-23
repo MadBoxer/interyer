@@ -25,6 +25,7 @@ gem 'tinymce-rails'
 gem 'kaminari', "~> 0.14.1"
 gem 'rails-i18n'
 gem 'russian', '~> 0.6.0'
+gem 'hpricot'
 
 gem 'carrierwave'
 gem 'rmagick'

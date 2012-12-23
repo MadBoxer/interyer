@@ -1,0 +1,8 @@
+- unless products.empty?
+  %table
+    - products.each do |prod|
+      %tr
+        %td
+          = check_box 'products', prod.id, {:checked => (prod.discount && prod.discount.id == discount.id)}
+        %td
+          = prod.name
