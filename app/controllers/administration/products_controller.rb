@@ -10,7 +10,6 @@ class Administration::ProductsController < Administration::AdministrationControl
   end
   def index
     @administration_products = Product.page(params[:page]).per(20)
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @administration_products }

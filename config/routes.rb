@@ -1,5 +1,7 @@
 Interyer::Application.routes.draw do
 
+  get '/news', :controller => 'public/news', :action => 'index'
+  get '/news/:news_ref', :controller => 'public/news', :action => 'show', :news_ref => :news_ref
   namespace :administration do
     resources :news, :except => 'show' do
     end
@@ -34,8 +36,7 @@ Interyer::Application.routes.draw do
   namespace :administration do resources :products, :except => 'show' end
 
 
-  get '/news', :controller => 'public/news', :action => 'index'
-  get '/news/:news_ref', :controller => 'public/news', :action => 'show', :news_ref => :news_ref
+
   get '/search', :controller => 'public/product', :action => 'search'
   get '/login', :controller => 'public/user', :action => 'login'
   get '/unlogin', :controller => 'public/user', :action => 'unlogin'
